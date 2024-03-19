@@ -23,5 +23,6 @@ def test_deck_init(setup_deck):
     assert setup_deck.count == 3
 
 def test_cards_in_category(setup_deck):
-    assert setup_deck.cards_in_category("STEM") == 2
-    assert setup_deck.cards_in_category("Geography") == 1
+    assert setup_deck.cards_in_category("STEM") == [setup_deck.cards[1], setup_deck.cards[2]]
+    assert setup_deck.cards_in_category("Geography") == [setup_deck.cards[0]]
+    assert setup_deck.cards_in_category("Math") == []
