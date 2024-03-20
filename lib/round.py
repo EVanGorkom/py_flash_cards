@@ -8,22 +8,22 @@ class Round:
         self.card_index = 0
         self.current_card = self.deck.cards[self.card_index]
         self.number_correct = 0
-        # self.percent_correct = 0
+        self.percent_correct = 0.0
 
     def take_turn(self, guess):
         turn = Turn(guess, self.current_card)
+        self.turns.append(turn)
         if guess == self.current_card.answer:
             self.number_correct += 1
-        self.turns.append(turn)
+        self.calc_percent_correct()
         self.card_index += 1
         return turn
 
-    # def calc_percent_correct(self):
-    #     # pdb.set_trace()
-    #     if len(self.turns) == 0:
-    #         return 0
-    #     else:
-    #         return (self.number_correct) / (len(self.turns)) * 100
+    def calc_percent_correct(self):
+        if len(self.turns) == 0:
+            self.percent_correct = 0.00
+        else:
+            self.percent_correct = float(self.number_correct / len(self.turns) * 100)
 
     def number_correct_by_category(self, category):
         num_correct_by_cat = 0

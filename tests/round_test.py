@@ -4,16 +4,6 @@ from lib.deck import Deck
 from lib.turn import Turn
 from lib.round import Round
 
-# @pytest.fixture
-# def setup_round():
-#     card1 = Card("What is the capital of Alaska?", "Juneau", "Geography")
-#     card2 = Card("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", "STEM")
-#     card3 = Card("Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", "STEM")
-#     deck = Deck([card1, card2, card3])
-#     round = Round(deck)
-#     return round
-    
-# def test_round_init(setup_round):
 def test_round_init():
     card1 = Card("What is the capital of Alaska?", "Juneau", "Geography")
     card2 = Card("The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?", "Mars", "STEM")
@@ -40,6 +30,7 @@ def test_take_turn_happy():
     assert round.turns == [new_turn]
     assert round.card_index == 1
     assert round.number_correct == 1
+    assert round.percent_correct == 100.00
 
 def test_take_turn_sad():
     card1 = Card("What is the capital of Alaska?", "Juneau", "Geography")
@@ -56,6 +47,7 @@ def test_take_turn_sad():
     assert round.turns == [new_turn]
     assert round.card_index == 1
     assert round.number_correct == 0
+    assert round.percent_correct == 0.00
 
 def test_number_correct_by_category():
     card1 = Card("What is the capital of Alaska?", "Juneau", "Geography")
