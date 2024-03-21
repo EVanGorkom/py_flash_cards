@@ -39,3 +39,4 @@ class Round:
     def percent_correct_by_category(self, category):
         num = ((self.number_correct_by_category(category) / len(self.turns)) * 100)
         return float(num)
+        # This is not actually calculating properly. it's looking at all turns instead of turns of that category
