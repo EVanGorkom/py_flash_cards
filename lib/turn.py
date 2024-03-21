@@ -6,7 +6,7 @@ class Turn:
         self.feedback = self.response()
 
     def check_guess(self):
-        return self.guess == self.card.answer
+        return (self.guess).lower() == (self.card.answer).lower()
 
     def response(self):
         if self.correct == True:
