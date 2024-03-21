@@ -15,8 +15,12 @@ class Round:
         self.turns.append(turn)
         if guess == self.current_card.answer:
             self.number_correct += 1
-        self.calc_percent_correct()
+        
         self.card_index += 1
+        if self.card_index < len(self.deck.cards):
+            self.current_card = self.deck.cards[self.card_index]
+
+        self.calc_percent_correct()
         return turn
 
     def calc_percent_correct(self):
