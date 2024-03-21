@@ -50,7 +50,6 @@ running = False
 
 while True:
     play_or_exit = input("Would you like to play? (y/n)\n")
-
     if play_or_exit == 'y':
         running = True
         break
@@ -73,10 +72,39 @@ while running:
 
     # Play the game
     print("\n")
-    print(f"Let's start, you're playing with {len(cards)} cards.")
-    print("-----------------------------------------------")
+    print(f"Let's start, you're playing with {len(cards)} cards.\n")
+    print("-----------------S-T-A-R-T-!-----------------\n")
 
-    while question_count < len(cards):
-        print(f"Question {question_count}: {round.current_card.question}\n")
-        guess = input("")
-        round.take_turn(guess)
+    while question_count <= len(cards):
+        print(f"Question {question_count}: {round.current_card.question}")
+        turn = round.take_turn(input(""))
+        if turn.correct:
+            print(turn.feedback)
+            print('\n')
+        else:
+            print(turn.feedback)
+            print(f"The correct answer was: {turn.card.answer}")
+            print('\n')
+        question_count += 1
+    
+    print("ROUND OVER!!!\n")
+    print("---------------R-E-S-U-L-T-S---------------\n")
+    print(f"Your percent correct was: {round.percent_correct}")
+    if round.percent_correct < 70.0:
+        print("I'm sure you'll smash it next time!")
+    elif round.percent_correct >= 70.0:
+        print("Well done!")
+    elif round.percent_correct >= 90.0:
+        print("Very impressive!")
+
+    while True:
+        play_again = input("\nWould you like to play again? (y/n)\n")
+        if play_again.lower() == 'y':
+            break
+        elif play_again.lower() == 'n':
+            print("\nGame Over, thanks for playing!")
+            running = False
+            break
+        else:
+            print("Please enter either 'y' or 'n'.")
+
